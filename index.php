@@ -1,28 +1,24 @@
-<?php
+<?php 
 $server="localhost";
 $username="root";
 $password="";
 $database="zalego";
 
-$conn = mysql_connect($server,$username,$password,$database);
-if($conn)
+$conn = mysqli_connect($server,$username,$password,$database);
+if( isset($_post['submitbutton']))
 {
-  echo "Database Connected Successfully";
+  // 1.fetch form data
+  $firstname=$_post['firstname'];
+  $lastname=$_post['lastname'];
+  $email=$_post['email'];
+  $phone=$_post['phonenumber'];
+  $message=$_post['message'];
+  // 2. submit form data
+  $insertdata =mysqli_query($conn, "INSERT INTO contactus(firstname,lastname,email,phonenumber,message)VALUES('$firstname','$lastname','$email','$phonenumber','$message')");
 
 }
-else{
-  echo "Error Occured";
-}
+
 ?>
-
-
-
-
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +32,7 @@ else{
 </head>
 <body>
   
-<!-- navigation bar here -->
+<!-- Navigation bar starts here -->
 <nav class="navbar navbar-expand-lg bg-light shadow fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Zalego Academy</a>
@@ -46,14 +42,14 @@ else{
       <div class="collapse navbar-collapse" id="navbarDisplayNavigations">
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
-          <a class="nav-link active" href="about.html">About Us</a>
-          <a class="nav-link" href="#">Contact Us</a>
+          <a class="nav-link active" href="about-us.php">About Us</a>
+          <a class="btn btn-primary" href="enroll.php">Register now</a>
         </div>
       </div>
     </div>
   </nav>
 
-<!-- End navigation bar -->
+<!--Navigation bar ends here-->
 
 
 
@@ -99,9 +95,9 @@ else{
         
       
            
-      <!-- Contact Us Page Here -->
+      <!-- Register now page starts Here -->
       <div class="row pt-5">
-        <h1>Contact Us</h1>
+        <h1>Register now</h1>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque officia autem repellendus eos! Numquam, 
           voluptates dolores eius veniam sunt odit.
@@ -110,38 +106,38 @@ else{
   <div class="row">
     <div  class="mb-3 col-lg-6">
       <label for="First Name" class="form-label">First Name</label>
-      <input type="text" class="form-control" placeholder="Enter Your First Name">
+      <input type="text" name="firstname"class="form-control" placeholder="Enter Your First Name">
     </div>
     <div class="mb-3 col-lg-6">
       <label for="Last Name" class="form-label">Last Name</label>
-      <input type="text" class="form-control" placeholder="Enter Your Last Name">
+      <input type="text"name="lastname"class="form-control" placeholder="Enter Your Last Name">
     
     </div>
   </div>
   <div class="row">
     <div  class="mb-3 col-lg-6">
       <label for="Email" class="form-label">Email</label>
-      <input type="Email" class="form-control" placeholder="Enter Your Email Address">
+      <input type="Email" name="email"class="form-control" placeholder="Enter Your Email Address">
     </div>
     <div class="mb-3 col-lg-6">
       <label for="Phone Number" class="form-label">Last Name</label>
-      <input type="tel" class="form-control" placeholder="Enter Your Phone Number">
+      <input type="tel" name="phonenumber"class="form-control" placeholder="Enter Your Phone Number">
     
     </div>
   </div>
   <div class="row">
     <div class="col-lg-12">
       <label for="Your Message" class="form-label">Your Message</label>
-      <textarea cols="30" row="10" class="form-control"></textarea>
+      <textarea cols="30" row="10" class="form-control" name="message"></textarea>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary mt-5">Send A Message</button>
+  <button type="submit" name="submitbutton"class="btn btn-primary mt-5">Send A Message</button>
 </form>
 
 
       </div>
 
-      <!-- End Contact Us Page -->
+      <!-- End Register now Page -->
 
      </div>
 <hr>
